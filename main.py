@@ -15,10 +15,19 @@ desired_attributes = ["Title", "Author", "Pages", "Genre"]
 filtered_books_list = [{key: book[key] for key in desired_attributes} for book in book_list]
 
 
+
+
 with open(get_path('users.json'), "r") as f:
     users_list = json.load(f)
 desired_attributes = ["name", "gender", "address", "age"]
 filtered_users_list = [{key: user[key] for key in desired_attributes} for user in users_list]
+
+
+for book in filtered_books_list:
+    book['Pages'] = int(book['Pages'] )
+
+filtered_books_list = [{key.lower(): value for key, value in item.items()} for item in filtered_books_list]
+
 
 cycle_iterator_users = itertools.cycle(filtered_users_list)
 
